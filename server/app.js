@@ -12,9 +12,12 @@ const collectionRoutes = require('./routes/collectionRoutes');
 const notFound = require('./middleware/notFound');
 const errorHandler = require('./middleware/errorHandler');
 
+const cors = require('cors');
+
 const app = express();
 
 // Middleware
+app.use(cors());
 app.use(express.json());
 
 // Root Endpoint
