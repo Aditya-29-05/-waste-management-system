@@ -8,6 +8,7 @@ dotenv.config({ path: path.resolve(__dirname, '../.env') });
 const healthRoutes = require('./routes/healthRoutes');
 const authRoutes = require('./routes/authRoutes');
 const wasteReportRoutes = require('./routes/wasteReportRoutes');
+const collectionRoutes = require('./routes/collectionRoutes');
 const notFound = require('./middleware/notFound');
 const errorHandler = require('./middleware/errorHandler');
 
@@ -28,6 +29,7 @@ app.get('/', (req, res) => {
 app.use('/api/health', healthRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/reports', wasteReportRoutes);
+app.use('/api/collections', collectionRoutes);
 
 // Error Handling Middlewares
 app.use(notFound);
