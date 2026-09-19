@@ -15,14 +15,7 @@ const wasteReportSchema = new mongoose.Schema(
     wasteType: {
       type: String,
       required: [true, 'Waste type is required'],
-      enum: [
-        'Garbage accumulation',
-        'Overflowing bins',
-        'Illegal dumping',
-        'Uncollected waste',
-        'Other'
-      ],
-      default: 'Other'
+      trim: true
     },
     location: {
       type: String,
