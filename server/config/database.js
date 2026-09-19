@@ -1,14 +1,24 @@
-// Database connection configuration (MongoDB)
-// Will be fully configured and connected in Stage 3
+const mongoose = require('mongoose');
 
+/**
+ * Connect to MongoDB using connection URI from environment variables
+ */
 const connectDB = async () => {
-  const mongoURI = process.env.MONGODB_URI;
-  if (!mongoURI) {
-    console.warn('Warning: MONGODB_URI is not defined in environment variables');
-    return;
+  try {
+    const mongoURI = process.env.MONGODB_URI;
+
+    if (!mongoURI) {
+      throw new Error('MONGODB_URI is not defined in environment variables');
+    }
+
+    const conn = await mongoose.connect(mongoURI);
+
+    console.log(`MongoDB Connected: ${conn.connection.host}`);
+    return conn;
+  } catch (error) {
+    console.error(`MongoDB Connection Error: ${error.message}`);
+    process.exit(1);
   }
-  // Connection logic will be implemented in the database stage
-  console.log('MongoDB connection initialized');
 };
 
 module.exports = {
